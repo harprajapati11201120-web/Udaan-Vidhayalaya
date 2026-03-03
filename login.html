@@ -4,68 +4,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Udaan Vidhyalaya</title>
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'school-blue': '#4e73df', /* Lighter blue as per screenshot */
-                        'school-dark': '#2e59d9',
-                        'school-gold': '#C5A059',
-                    },
-                    fontFamily: {
-                        'sans': ['Poppins', 'sans-serif'],
-                        'heading': ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sign Up - Udaan Vidhyalaya</title>
+    <link rel="dns-prefetch" href="//static-bundles.visme.co">
+    <link rel="preconnect" href="https://static-bundles.visme.co" crossorigin>
+    <link rel="preload" href="https://static-bundles.visme.co/forms/vismeforms-embed.js" as="script">
     <style>
+        :root {
+            color-scheme: light;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #4e73df;
-            background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-            background-size: cover;
+            margin: 0;
+            min-height: 100dvh;
+            font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: #edf3fa;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .signup-shell {
+            min-height: 100dvh;
+            position: relative;
         }
 
-        .floating-img {
-            animation: float 6s ease-in-out infinite;
+        .visme_d {
+            opacity: 0;
+            transition: opacity 0.25s ease;
         }
 
-        @keyframes float {
+        body.visme-ready .visme_d {
+            opacity: 1;
+        }
+
+        #visme-loader {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(180deg, #f4f8fc 0%, #e8f0f9 100%);
+            z-index: 9999;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        body.visme-ready #visme-loader {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            color: #0b3f73;
+            padding: 12px 18px;
+            border-radius: 999px;
+            box-shadow: 0 8px 24px rgba(15, 41, 74, 0.12);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .loader-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #0b4f8c;
+            animation: pulse 0.9s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
             0% {
-                transform: translateY(0px);
+                transform: scale(0.9);
+                opacity: 0.6;
             }
 
             50% {
-                transform: translateY(-20px);
+                transform: scale(1.2);
+                opacity: 1;
             }
 
             100% {
-                transform: translateY(0px);
+                transform: scale(0.9);
+                opacity: 0.6;
             }
         }
     </style>
 </head>
 
-<body class="font-sans antialiased min-h-screen">
-    <div class="visme_d" data-title="Mailing List Sign Up Form" data-url="p9n6mmre-mailing-list-sign-up-form?fullPage=true" data-domain="forms" data-full-page="true" data-min-height="100vh" data-form-id="168419">
-</div>
-    <script src="https://static-bundles.visme.co/forms/vismeforms-embed.js"></script>
+<body>
+    <div id="visme-loader">
+        <div class="loader-card">
+            <span class="loader-dot"></span>
+            <span>Opening sign in...</span>
+        </div>
+    </div>
+
+    <main class="signup-shell">
+        <div class="visme_d" data-title="Mailing List Sign Up Form"
+            data-url="p9n6mmre-mailing-list-sign-up-form?fullPage=true" data-domain="forms" data-full-page="true"
+            data-min-height="100vh" data-form-id="168419"></div>
+    </main>
+    <script src="https://static-bundles.visme.co/forms/vismeforms-embed.js" async></script>
+    <script>
+        (function () {
+            const ready = () => document.body.classList.add('visme-ready');
+            const vismeHost = document.querySelector('.visme_d');
+            if (!vismeHost) {
+                ready();
+                return;
+            }
+
+            const fallback = window.setTimeout(ready, 2800);
+            const observer = new MutationObserver(() => {
+                const frame = vismeHost.querySelector('iframe');
+                if (!frame) return;
+                frame.addEventListener('load', () => {
+                    window.clearTimeout(fallback);
+                    ready();
+                }, { once: true });
+                observer.disconnect();
+            });
+
+            observer.observe(vismeHost, { childList: true, subtree: true });
+            window.addEventListener('load', () => window.setTimeout(ready, 1600), { once: true });
+        })();
+    </script>
 
 </body>
 

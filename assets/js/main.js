@@ -2,12 +2,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize AOS Animation
-    AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        mirror: false
-    });
+    if (window.AOS) {
+        AOS.init({
+            duration: 700,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    }
 
     // Loader
     const loader = document.getElementById('loader');
@@ -17,24 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 500);
-        }, 1500); // Show loader for 1.5 seconds
+        }, 600);
     }
 
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
-    const logoText = document.querySelector('.font-heading');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('nav-scrolled');
-            navbar.classList.remove('py-4');
-            navbar.classList.add('py-2');
-        } else {
-            navbar.classList.remove('nav-scrolled');
-            navbar.classList.add('py-4');
-            navbar.classList.remove('py-2');
-        }
-    });
 
     // Counter Animation
     const counters = document.querySelectorAll('.counter');
@@ -59,30 +48,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Scroll Observer for Counters
+    // Observe About section for counters
     const aboutSection = document.querySelector('#about');
-    if (aboutSection) {
-        window.addEventListener('scroll', () => {
-            const position = aboutSection.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-            if (position < screenPosition && !hasCounted) {
+    if (aboutSection && counters.length) {
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            if (entries[0].isIntersecting && !hasCounted) {
                 startCounters();
                 hasCounted = true;
+                observer.disconnect();
             }
-        });
+        }, { threshold: 0.2 });
+        counterObserver.observe(aboutSection);
     }
 
     // Scroll to Top Button
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     if (scrollToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.remove('opacity-0', 'translate-y-20');
-            } else {
-                scrollToTopBtn.classList.add('opacity-0', 'translate-y-20');
-            }
-        });
-
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -90,6 +71,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Single passive scroll observer for navbar + back-to-top
+    const onScroll = () => {
+        const y = window.scrollY;
+        if (navbar) {
+            if (y > 50) {
+                navbar.classList.add('nav-scrolled');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        }
+
+        if (scrollToTopBtn) {
+            if (y > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'translate-y-20');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'translate-y-20');
+            }
+        }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     // Mobile Menu Toggle logic (kept from previous version)
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -100,15 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
         });
 
         closeMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('translate-x-full');
+            document.body.style.overflow = '';
         });
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = '';
             });
         });
     }
@@ -191,4 +201,37 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // Lightweight image optimization for all pages
+    const allImages = document.querySelectorAll('img');
+    allImages.forEach((img, index) => {
+        if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', index < 2 ? 'eager' : 'lazy');
+    });
+
+    // Fast and smooth Sign In navigation
+    const signinLinks = document.querySelectorAll('.signin-link');
+    let loginPrefetched = false;
+    const ensureLoginPrefetch = () => {
+        if (loginPrefetched) return;
+        const prefetch = document.createElement('link');
+        prefetch.rel = 'prefetch';
+        prefetch.href = 'login.html';
+        prefetch.as = 'document';
+        document.head.appendChild(prefetch);
+        loginPrefetched = true;
+    };
+
+    signinLinks.forEach(link => {
+        link.addEventListener('pointerenter', ensureLoginPrefetch, { once: true });
+        link.addEventListener('touchstart', ensureLoginPrefetch, { once: true, passive: true });
+        link.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            document.body.classList.add('page-fade-out');
+            window.setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 140);
+        });
+    });
 });
