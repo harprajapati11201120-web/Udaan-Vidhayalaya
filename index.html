@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udaan Vidhyalaya - Where Dreams Take Flight</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'school-blue': '#003366',
+                        'school-gold': '#C5A059',
+                        'school-gold-light': '#E5C585',
+                        'school-white': '#FFFFFF',
+                        'school-light-gray': '#F5F5F5',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                        'heading': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="font-sans text-gray-800 bg-school-light-gray overflow-x-hidden">
+
+    <!-- Loading Animation -->
+    <div id="loader"
+        class="fixed inset-0 z-50 bg-white flex items-center justify-center transition-opacity duration-500">
+        <div class="relative w-24 h-24">
+            <div
+                class="absolute top-0 left-0 w-full h-full border-4 border-school-blue border-t-school-gold rounded-full animate-spin">
+            </div>
+            <div
+                class="absolute top-2 left-2 w-20 h-20 border-4 border-school-gold border-t-school-blue rounded-full animate-spin-reverse">
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center font-bold text-school-blue text-xl">UV</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 bg-transparent text-white py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="w-10 h-10 bg-school-gold rounded-full flex items-center justify-center text-school-blue font-bold text-xl group-hover:scale-110 transition-transform">
+                    UV</div>
+                <div class="flex flex-col">
+                    <span class="font-heading font-bold text-xl leading-none tracking-wide">UDAAN</span>
+                    <span class="text-xs font-light tracking-widest text-school-gold">VIDHYALAYA</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="#home"
+                    class="hover:text-school-gold transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-school-gold after:transition-all hover:after:w-full">Home</a>
+                <a href="#about"
+                    class="hover:text-school-gold transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-school-gold after:transition-all hover:after:w-full">About</a>
+                <a href="#facilities"
+                    class="hover:text-school-gold transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-school-gold after:transition-all hover:after:w-full">Facilities</a>
+                <a href="#gallery"
+                    class="hover:text-school-gold transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-school-gold after:transition-all hover:after:w-full">Gallery</a>
+                <a href="#contact"
+                    class="hover:text-school-gold transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-school-gold after:transition-all hover:after:w-full">Contact</a>
+
+                <a href="login.html" class="hover:text-school-gold transition-colors font-medium">Login</a>
+                <a href="login.html"
+                    class="bg-school-blue text-white px-5 py-2 rounded-full font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap border-2 border-school-blue hover:bg-white hover:text-school-blue">Sign
+                    In</a>
+
+                <a href="admission.html"
+                    class="bg-school-gold hover:bg-white hover:text-school-blue text-school-blue px-6 py-2 rounded-full font-bold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Admissions</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-school-blue/95 backdrop-blur-md z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center gap-8 text-xl">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-school-gold"><i
+                    class="fas fa-times"></i></button>
+            <a href="#home" class="mobile-link hover:text-school-gold">Home</a>
+            <a href="#about" class="mobile-link hover:text-school-gold">About</a>
+            <a href="#facilities" class="mobile-link hover:text-school-gold">Facilities</a>
+            <a href="#gallery" class="mobile-link hover:text-school-gold">Gallery</a>
+            <a href="admission.html" class="mobile-link text-school-gold font-bold">Apply Now</a>
+            <a href="login.html" class="mobile-link">Login</a>
+            <a href="login.html"
+                class="mobile-link bg-school-blue text-white px-6 py-2 rounded-full border-2 border-school-blue hover:bg-transparent hover:text-school-blue transition-all">Sign
+                In</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-school-blue/70 to-black/40 z-10"></div>
+
+        <!-- Background Image (Placeholder) -->
+        <div class="absolute inset-0 z-0 scale-110 animate-slow-zoom">
+            <img src="data:image/jpeg;base64,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"
+                alt="School Campus" class="w-full h-full object-cover">
+        </div>
+
+        <div class="relative z-20 container mx-auto px-6 text-center">
+            <div data-aos="fade-down" data-aos-duration="1000">
+                <span
+                    class="inline-block py-1 px-3 border border-school-gold text-school-gold rounded-full text-sm font-semibold tracking-wider mb-4 bg-school-blue/30 backdrop-blur-sm">ADMISSION
+                    OPEN 2026-27</span>
+            </div>
+
+            <h1 data-aos="fade-up" data-aos-delay="200"
+                class="font-heading font-bold text-5xl md:text-7xl lg:text-8xl mb-4 leading-tight">
+                UDAAN <span class="text-school-gold">VIDHYALAYA</span>
+            </h1>
+
+            <p data-aos="fade-up" data-aos-delay="400"
+                class="text-lg md:text-2xl font-light mb-10 max-w-2xl mx-auto text-gray-200">
+                Where Dreams Take Flight. Empowering the next generation with world-class education and values.
+            </p>
+
+            <div data-aos="fade-up" data-aos-delay="600"
+                class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="admission.html"
+                    class="bg-school-gold text-school-blue font-bold py-4 px-8 rounded-full shadow-lg hover:bg-white transition-all transform hover:-translate-y-1 hover:shadow-gold/50 min-w-[200px]">
+                    <i class="fas fa-paper-plane mr-2"></i> Apply for Admission
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <a href="#about" class="text-white opacity-80 hover:opacity-100 hover:text-school-gold transition-colors">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Placeholder -->
+    <main>
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-white overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="About Udaan Vidhyalaya" class="rounded-xl shadow-2xl z-10 relative">
+                            <div
+                                class="absolute -bottom-6 -right-6 w-48 h-48 bg-school-gold/20 rounded-full blur-3xl -z-0">
+                            </div>
+                            <div class="absolute -top-6 -left-6 w-48 h-48 bg-school-blue/20 rounded-full blur-3xl -z-0">
+                            </div>
+
+                            <!-- Principal Image Overlay -->
+                            <div class="absolute -bottom-10 -right-10 bg-white p-4 rounded-lg shadow-xl max-w-xs hidden md:block"
+                                data-aos="fade-up" data-aos-delay="300">
+                                <div class="flex items-center gap-4">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                                        alt="Principal"
+                                        class="w-16 h-16 rounded-full object-cover border-2 border-school-gold">
+                                    <div>
+                                        <p class="font-bold text-school-blue">PonamBen Barot</p>
+                                        <p class="text-xs text-gray-500">Principal, Udaan Vidhyalaya</p>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-xs text-gray-600 italic">"Education is the most powerful weapon
+                                    which you can use to change the world."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2" data-aos="fade-left">
+                        <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">About Us</h4>
+                        <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue mb-6">Nurturing Minds,
+                            <span class="text-school-gold">Building Futures</span>
+                        </h2>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Founded in 2005, Udaan Vidhyalaya has been a beacon of educational excellence. We believe in
+                            holistic development, combining academic rigor with sports, arts, and values. Our mission is
+                            to empower students to become global citizens who are compassionate, critical thinkers, and
+                            lifelong learners.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            <div class="bg-school-light-gray p-4 rounded-lg border-l-4 border-school-gold">
+                                <h3 class="font-bold text-school-blue text-xl mb-1">Mission</h3>
+                                <p class="text-sm text-gray-600">To provide a safe, inclusive, and stimulating learning
+                                    environment.</p>
+                            </div>
+                            <div class="bg-school-light-gray p-4 rounded-lg border-l-4 border-school-blue">
+                                <h3 class="font-bold text-school-blue text-xl mb-1">Vision</h3>
+                                <p class="text-sm text-gray-600">To be a leader in educational innovation and character
+                                    building.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-8 text-center">
+                            <div>
+                                <h3 class="text-3xl font-bold text-school-blue counter" data-target="1500">0</h3>
+                                <p class="text-gray-500 text-sm">Students</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-school-blue counter" data-target="75">0</h3>
+                                <p class="text-gray-500 text-sm">Teachers</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-school-blue counter" data-target="25">0</h3>
+                                <p class="text-gray-500 text-sm">Classrooms</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-school-blue">100%</h3>
+                                <p class="text-gray-500 text-sm">Results</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Achievements Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">Excellence</h4>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue">Student Achievements</h2>
+                    <div class="w-20 h-1 bg-school-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-xl p-8 border hover:border-school-gold transition-all hover:shadow-xl group text-center"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div
+                            class="w-20 h-20 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-school-blue mb-2">National Science Olympiad</h3>
+                        <p class="text-gray-600 text-sm">3 Students secured Gold Medals in the National Science Olympiad
+                            2025.</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-8 border hover:border-school-blue transition-all hover:shadow-xl group text-center"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            class="w-20 h-20 bg-blue-100 text-school-blue rounded-full flex items-center justify-center text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-school-blue mb-2">Best School Award</h3>
+                        <p class="text-gray-600 text-sm">Awarded 'Best Emerging School in Gujarat' by the Education
+                            Council.</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-8 border hover:border-green-500 transition-all hover:shadow-xl group text-center"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <div
+                            class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-school-blue mb-2">State Sports Championship</h3>
+                        <p class="text-gray-600 text-sm">Under-14 Football team won the State Championship Trophy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="academics" class="py-20 bg-school-light-gray">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">Academics</h4>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue">Our Academic Programs</h2>
+                    <div class="w-20 h-1 bg-school-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-card group" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Pre-Primary"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 relative">
+                            <div
+                                class="absolute -top-8 right-6 w-16 h-16 bg-school-gold rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-school-blue mb-2 mt-4">Pre-Primary</h3>
+                            <p class="text-gray-600 text-sm mb-4">Nursery, Jr. KG, & Sr. KG. and std 1 to 10 Play-based
+                                learning for
+                                early development.</p>
+                            <a href="#"
+                                class="text-school-blue font-semibold hover:text-school-gold transition-colors text-sm">Read
+                                More <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-card group" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Primary School"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 relative">
+                            <div
+                                class="absolute -top-8 right-6 w-16 h-16 bg-school-blue rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-school-blue mb-2 mt-4">Primary (Std 1-5)</h3>
+                            <p class="text-gray-600 text-sm mb-4">Building strong foundations in core subjects with
+                                interactive methods.</p>
+                            <a href="#"
+                                class="text-school-blue font-semibold hover:text-school-gold transition-colors text-sm">Read
+                                More <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-card group" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Upper Primary"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 relative">
+                            <div
+                                class="absolute -top-8 right-6 w-16 h-16 bg-school-gold rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-school-blue mb-2 mt-4">Upper Primary (Std 6-8)</h3>
+                            <p class="text-gray-600 text-sm mb-4">Focus on conceptual understanding and skill
+                                development.</p>
+                            <a href="#"
+                                class="text-school-blue font-semibold hover:text-school-gold transition-colors text-sm">Read
+                                More <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-card group" data-aos="fade-up"
+                        data-aos-delay="400">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Secondary School"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 relative">
+                            <div
+                                class="absolute -top-8 right-6 w-16 h-16 bg-school-blue rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-school-blue mb-2 mt-4">Secondary (Std 9-10)</h3>
+                            <p class="text-gray-600 text-sm mb-4">Preparation for board exams with rigorous academic
+                                training.</p>
+                            <a href="#"
+                                class="text-school-blue font-semibold hover:text-school-gold transition-colors text-sm">Read
+                                More <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilities Section -->
+        <section id="facilities" class="py-20 bg-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-school-blue/5 skew-x-12 transform translate-x-20"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">Infrastructure</h4>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue">World-Class Facilities</h2>
+                    <div class="w-20 h-1 bg-school-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="100">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Library</h3>
+                        <p class="text-xs text-gray-500">10,000+ Books & Digital Resources</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="200">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Science Labs</h3>
+                        <p class="text-xs text-gray-500">Physics, Chemistry, Biology Labs</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Computer Lab</h3>
+                        <p class="text-xs text-gray-500">Modern PCs with High-Speed Internet</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="400">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-basketball-ball"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Sports Complex</h3>
+                        <p class="text-xs text-gray-500">Indoor & Outdoor Sports Facilities</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="500">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Transport</h3>
+                        <p class="text-xs text-gray-500">GPS Enabled AC Buses</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="600">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Security</h3>
+                        <p class="text-xs text-gray-500">24/7 CCTV Surveillance</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="700">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Smart Class</h3>
+                        <p class="text-xs text-gray-500">Interactive Digital Boards</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow border border-gray-100 group"
+                        data-aos="zoom-in" data-aos-delay="800">
+                        <div
+                            class="w-16 h-16 mx-auto bg-school-light-gray rounded-full flex items-center justify-center text-school-blue text-3xl mb-4 group-hover:bg-school-blue group-hover:text-white transition-colors">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3 class="font-bold text-school-blue mb-2">Arts & Music</h3>
+                        <p class="text-xs text-gray-500">Dedicated Studios for Arts</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-between items-end mb-12" data-aos="fade-right">
+                    <div>
+                        <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">Campus Life</h4>
+                        <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue">Our Gallery</h2>
+                    </div>
+                    <a href="#"
+                        class="hidden md:inline-block text-school-blue hover:text-school-gold transition-colors">View
+                        All Photos
+                        <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Gallery Item 1 -->
+                    <div class="relative overflow-hidden group rounded-lg h-64 md:h-80 md:col-span-2"
+                        data-aos="fade-up">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                            alt="Annual Day"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div
+                                class="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform text-white">
+                                <h3 class="font-bold text-xl">Annual Function</h3>
+                                <p class="text-sm">Celebrating Talent</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="relative overflow-hidden group rounded-lg h-64 md:h-80" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Classroom"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div
+                                class="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform text-white">
+                                <h3 class="font-bold text-xl">Smart Learning</h3>
+                                <p class="text-sm">Modern Classrooms</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="relative overflow-hidden group rounded-lg h-64 md:h-80" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Library"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div
+                                class="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform text-white">
+                                <h3 class="font-bold text-xl">Library</h3>
+                                <p class="text-sm">World of Books</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="relative overflow-hidden group rounded-lg h-64 md:h-80 md:col-span-2" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                            alt="Sports"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div
+                                class="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform text-white">
+                                <h3 class="font-bold text-xl">Sports Day</h3>
+                                <p class="text-sm">Champions in Action</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events & News Section -->
+        <section id="events" class="py-20 bg-school-light-gray">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">Updates</h4>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue">Events & News</h2>
+                    <div class="w-20 h-1 bg-school-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Upcoming Events -->
+                    <div class="lg:w-1/3" data-aos="fade-right">
+                        <h3 class="text-2xl font-bold text-school-blue mb-6 flex items-center gap-2"><i
+                                class="far fa-calendar-alt text-school-gold"></i> Upcoming Events</h3>
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="p-4 border-b border-gray-100 flex gap-4 hover:bg-gray-50 transition-colors">
+                                <div class="bg-school-blue text-white rounded-lg p-3 text-center min-w-[70px]">
+                                    <span class="block text-2xl font-bold">15</span>
+                                    <span class="block text-xs uppercase">Mar</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Annual Sports Meet</h4>
+                                    <p class="text-sm text-gray-500 mb-1"><i class="far fa-clock text-xs mr-1"></i> 9:00
+                                        AM - 4:00 PM</p>
+                                    <span
+                                        class="text-xs bg-school-gold/20 text-school-blue px-2 py-1 rounded inline-block">Sports
+                                        Ground</span>
+                                </div>
+                            </div>
+                            <div class="p-4 border-b border-gray-100 flex gap-4 hover:bg-gray-50 transition-colors">
+                                <div class="bg-school-blue text-white rounded-lg p-3 text-center min-w-[70px]">
+                                    <span class="block text-2xl font-bold">22</span>
+                                    <span class="block text-xs uppercase">Mar</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Science Fair 2026</h4>
+                                    <p class="text-sm text-gray-500 mb-1"><i class="far fa-clock text-xs mr-1"></i>
+                                        10:00 AM - 2:00 PM</p>
+                                    <span
+                                        class="text-xs bg-school-gold/20 text-school-blue px-2 py-1 rounded inline-block">Auditorium</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex gap-4 hover:bg-gray-50 transition-colors">
+                                <div class="bg-school-blue text-white rounded-lg p-3 text-center min-w-[70px]">
+                                    <span class="block text-2xl font-bold">05</span>
+                                    <span class="block text-xs uppercase">Apr</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Parent-Teacher Meeting</h4>
+                                    <p class="text-sm text-gray-500 mb-1"><i class="far fa-clock text-xs mr-1"></i> 9:00
+                                        AM - 1:00 PM</p>
+                                    <span
+                                        class="text-xs bg-school-gold/20 text-school-blue px-2 py-1 rounded inline-block">Classrooms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Latest News -->
+                    <div class="lg:w-2/3" data-aos="fade-left">
+                        <h3 class="text-2xl font-bold text-school-blue mb-6 flex items-center gap-2"><i
+                                class="far fa-newspaper text-school-gold"></i> Latest News</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden group">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                        alt="News 1"
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                </div>
+                                <div class="p-6">
+                                    <span
+                                        class="text-xs text-school-gold font-bold uppercase tracking-wider mb-2 block">Academics</span>
+                                    <h4
+                                        class="font-bold text-lg text-school-blue mb-2 group-hover:text-school-gold transition-colors">
+                                        Students Execel in National Olympiad</h4>
+                                    <p class="text-gray-600 text-sm mb-4">Our students secured top ranks in the National
+                                        Science and Math Olympiad held last month.</p>
+                                    <a href="#" class="text-sm font-semibold text-school-blue hover:underline">Read Full
+                                        Story</a>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden group">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                        alt="News 2"
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                </div>
+                                <div class="p-6">
+                                    <span
+                                        class="text-xs text-school-gold font-bold uppercase tracking-wider mb-2 block">Admissions</span>
+                                    <h4
+                                        class="font-bold text-lg text-school-blue mb-2 group-hover:text-school-gold transition-colors">
+                                        Admissions Open for 2026-27</h4>
+                                    <p class="text-gray-600 text-sm mb-4">Registration for the new academic session has
+                                        begun. Apply online or visit the campus.</p>
+                                    <a href="#" class="text-sm font-semibold text-school-blue hover:underline">Read Full
+                                        Story</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">Testimonials</h4>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue">What Parents Say</h2>
+                    <div class="w-20 h-1 bg-school-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="bg-school-light-gray p-8 rounded-xl shadow-lg relative" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <i class="fas fa-quote-left text-4xl text-school-gold/20 absolute top-4 left-4"></i>
+                        <p class="text-gray-600 italic mb-6 z-10 relative">"Excellent infrastructure and very supportive
+                            teachers. My son has shown remarkable improvement in both academics and sports."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Parent"
+                                class="w-12 h-12 rounded-full border-2 border-school-gold">
+                            <div>
+                                <h5 class="font-bold text-school-blue">Rajesh Kumar</h5>
+                                <p class="text-xs text-gray-500">Parent of Class 8 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-school-light-gray p-8 rounded-xl shadow-lg relative" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <i class="fas fa-quote-left text-4xl text-school-gold/20 absolute top-4 left-4"></i>
+                        <p class="text-gray-600 italic mb-6 z-10 relative">"The holistic approach to education here is
+                            commendable. The school focuses on values as much as they do on grades."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Parent"
+                                class="w-12 h-12 rounded-full border-2 border-school-gold">
+                            <div>
+                                <h5 class="font-bold text-school-blue">Priya Singh</h5>
+                                <p class="text-xs text-gray-500">Parent of Class 5 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-school-light-gray p-8 rounded-xl shadow-lg relative" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <i class="fas fa-quote-left text-4xl text-school-gold/20 absolute top-4 left-4"></i>
+                        <p class="text-gray-600 italic mb-6 z-10 relative">"We are very happy with the safety measures
+                            and the communication from the school. Truly a world-class institution."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Parent"
+                                class="w-12 h-12 rounded-full border-2 border-school-gold">
+                            <div>
+                                <h5 class="font-bold text-school-blue">Amit Patel</h5>
+                                <p class="text-xs text-gray-500">Parent of Class 10 Student</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admission Call to Action -->
+        <section class="py-20 bg-fixed bg-cover bg-center relative"
+            style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+            <div class="absolute inset-0 bg-school-blue/80 z-0"></div>
+            <div class="container mx-auto px-6 relative z-10 text-center text-white" data-aos="zoom-in">
+                <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6">Join the Udaan Family</h2>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">Admissions open for the academic year
+                    2026-27. Give your child the wings to fly.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="admission.html"
+                        class="bg-school-gold text-school-blue font-bold py-3 px-8 rounded-full hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg">Apply
+                        Now</a>
+                    <a href="#contact"
+                        class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-school-blue transition-all">Contact
+                        Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h4 class="text-school-gold font-bold tracking-widest uppercase mb-2">Get in Touch</h4>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-school-blue">Contact Us</h2>
+                    <div class="w-20 h-1 bg-school-gold mx-auto mt-4"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <div class="bg-school-light-gray p-8 rounded-xl h-full">
+                            <h3 class="text-2xl font-bold text-school-blue mb-6">Send us a Message</h3>
+                            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input type="text" name="name" placeholder="Your Name"
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-school-gold"
+                                        required>
+                                    <input type="email" name="email" placeholder="Your Email"
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-school-gold"
+                                        required>
+                                </div>
+                                <input type="text" name="subject" placeholder="Subject"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-school-gold"
+                                    required>
+                                <textarea name="message" rows="5" placeholder="Your Message"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-school-gold"
+                                    required></textarea>
+                                <button type="submit"
+                                    class="bg-school-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-school-gold transition-colors w-full">Send
+                                    Message</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2" data-aos="fade-left">
+                        <div class="bg-school-light-gray p-8 rounded-xl mb-8">
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="bg-school-gold/20 p-3 rounded-full text-school-blue text-xl">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-school-blue text-lg">Our Location</h4>
+                                    <p class="text-gray-600">123 Knowledge Park, Education City,<br>New Delhi - 110001,
+                                        India</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="bg-school-gold/20 p-3 rounded-full text-school-blue text-xl">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-school-blue text-lg">Call Us</h4>
+                                    <p class="text-gray-600">+91 98765 43210<br>+91 11 2345 6789</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-school-gold/20 p-3 rounded-full text-school-blue text-xl">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-school-blue text-lg">Email Us</h4>
+                                    <p class="text-gray-600">info@udaanvidhyalaya.com<br>admissions@udaanvidhyalaya.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Google Map Embed -->
+                        <div class="rounded-xl overflow-hidden shadow-lg h-64">
+                            <iframe
+                                src="https://maps.google.com/maps?q=Udaan+Vidhyalay,+Siddhpur+Highway,+Runi,+Gujarat&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-school-blue text-white pt-20 pb-10">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                    <div>
+                        <div class="flex items-center gap-2 mb-6">
+                            <div
+                                class="w-10 h-10 bg-school-gold rounded-full flex items-center justify-center text-school-blue font-bold text-xl">
+                                UV</div>
+                            <div class="flex flex-col">
+                                <span class="font-heading font-bold text-xl leading-none tracking-wide">UDAAN</span>
+                                <span class="text-xs font-light tracking-widest text-school-gold">VIDHYALAYA</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                            Empowering students to dream, discover, and achieve. A premier institution building the
+                            leaders of tomorrow with values and excellence.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-school-gold hover:text-school-blue transition-all"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-school-gold hover:text-school-blue transition-all"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-school-gold hover:text-school-blue transition-all"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-school-gold hover:text-school-blue transition-all"><i
+                                    class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-6 text-school-gold">Quick Links</h4>
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li><a href="#about" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> About Us</a></li>
+                            <li><a href="#academics" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Academics</a></li>
+                            <li><a href="admission.html" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Admissions</a></li>
+                            <li><a href="#gallery" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Gallery</a></li>
+                            <li><a href="#contact" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Contact Us</a></li>
+                            <li><a href="login.html" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Login</a></li>
+                            <li><a href="career.html" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Careers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-6 text-school-gold">Facilities</h4>
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li><a href="#" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Library</a></li>
+                            <li><a href="#" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Computer Labs</a></li>
+                            <li><a href="#" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Science Labs</a></li>
+                            <li><a href="#" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Sports Complex</a></li>
+                            <li><a href="#" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Smart Classes</a></li>
+                            <li><a href="transport.html" class="hover:text-school-gold transition-colors"><i
+                                        class="fas fa-chevron-right text-xs mr-2"></i> Transport Tracking</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-6 text-school-gold">Newsletter</h4>
+                        <p class="text-gray-300 text-sm mb-4">Subscribe to our newsletter to get latest updates and
+                            news.</p>
+                        <form class="flex flex-col gap-2">
+                            <input type="email" placeholder="Your Email Address"
+                                class="bg-white/10 border border-white/20 text-white px-4 py-2 rounded focus:outline-none focus:border-school-gold">
+                            <button type="submit"
+                                class="bg-school-gold text-school-blue font-bold px-4 py-2 rounded hover:bg-white transition-colors">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
+                    <p>&copy; 2026 Udaan Vidhyalaya. All Rights Reserved. | Designed with <i
+                            class="fas fa-heart text-school-gold"></i> by AI.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <button id="scroll-to-top"
+            class="fixed bottom-8 right-8 bg-school-gold text-school-blue w-12 h-12 rounded-full shadow-lg flex items-center justify-center transform translate-y-20 opacity-0 transition-all z-40 hover:bg-white hover:-translate-y-1">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </main>
+
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle"
+        class="fixed top-24 right-6 z-50 bg-white dark:bg-gray-800 text-school-blue dark:text-yellow-400 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Chat Widget -->
+    <button id="chat-toggle-btn"
+        class="fixed bottom-8 left-8 z-50 bg-school-blue text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-school-gold transition-colors animate-bounce">
+        <i class="fas fa-comments text-2xl"></i>
+    </button>
+
+    <div id="chat-widget" class="chat-widget">
+        <div class="chat-header">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span class="font-bold">Admissions Support</span>
+            </div>
+            <button id="close-chat-btn" class="text-white hover:text-gray-200"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-msg received">
+                Hello! Welcome to Udaan Vidhyalaya. How can we help you today?
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type your message..."
+                class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:border-school-blue text-sm">
+            <button id="chat-send-btn"
+                class="bg-school-blue text-white w-10 h-10 rounded-lg flex items-center justify-center hover:bg-school-gold transition-colors">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

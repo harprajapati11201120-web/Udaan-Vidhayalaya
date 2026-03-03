@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Udaan Vidhyalaya</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'school-blue': '#003366',
+                        'school-gold': '#C5A059',
+                        'school-gold-light': '#E5C585',
+                        'school-white': '#FFFFFF',
+                        'school-light-gray': '#F5F5F5',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                        'heading': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .sidebar-active {
+            background-color: rgba(197, 160, 89, 0.2);
+            color: #C5A059;
+            border-right: 3px solid #C5A059;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-100 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-school-blue text-white hidden md:flex flex-col">
+        <div class="p-6 flex items-center gap-3 border-b border-white/10">
+            <div
+                class="w-10 h-10 bg-school-gold rounded-full flex items-center justify-center text-school-blue font-bold text-xl">
+                UV</div>
+            <span class="font-heading font-bold text-lg">Staff Portal</span>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1">
+                <li>
+                    <a href="#"
+                        class="flex items-center gap-4 px-6 py-3 sidebar-active hover:bg-white/5 transition-colors">
+                        <i class="fas fa-home w-5 text-center"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-4 px-6 py-3 hover:bg-white/5 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i> Students
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-4 px-6 py-3 hover:bg-white/5 transition-colors">
+                        <i class="fas fa-clipboard-check w-5 text-center"></i> Attendance
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-4 px-6 py-3 hover:bg-white/5 transition-colors">
+                        <i class="fas fa-book w-5 text-center"></i> My Subjects
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-4 px-6 py-3 hover:bg-white/5 transition-colors">
+                        <i class="fas fa-upload w-5 text-center"></i> Upload Marks
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-4 px-6 py-3 hover:bg-white/5 transition-colors">
+                        <i class="fas fa-calendar-alt w-5 text-center"></i> Timetable
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="p-4 border-t border-white/10">
+            <a href="index.html"
+                class="flex items-center gap-3 px-4 py-2 text-red-300 hover:text-red-100 transition-colors">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white shadow-sm h-16 flex items-center justify-between px-6 z-10">
+            <button class="md:hidden text-gray-600 text-xl"><i class="fas fa-bars"></i></button>
+            <h2 class="text-xl font-bold text-gray-800 hidden md:block">Teacher Dashboard</h2>
+
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 text-gray-600 hover:text-school-blue transition-colors">
+                    <i class="fas fa-bell"></i>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-bold text-gray-800">Mrs. Rohita Singh</p>
+                        <p class="text-xs text-gray-500">Science Dept.</p>
+                    </div>
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Teacher"
+                        class="w-10 h-10 rounded-full border-2 border-gray-200">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Content -->
+        <main class="flex-1 overflow-y-auto p-6 bg-gray-100">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Total Students</p>
+                            <h3 class="text-2xl font-bold text-school-blue">120</h3>
+                        </div>
+                        <div class="p-2 bg-blue-100 text-school-blue rounded-lg">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-green-500"><i class="fas fa-arrow-up"></i> All present today</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Pending Tasks</p>
+                            <h3 class="text-2xl font-bold text-school-gold">5</h3>
+                        </div>
+                        <div class="p-2 bg-yellow-100 text-school-gold rounded-lg">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500">Review homework</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Today's Classes</p>
+                            <h3 class="text-xl font-bold text-school-blue">4</h3>
+                        </div>
+                        <div class="p-2 bg-purple-100 text-purple-600 rounded-lg">
+                            <i class="fas fa-chalkboard"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500">Next: Class 10-B (Physics)</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Average Result</p>
+                            <h3 class="text-xl font-bold text-green-500">85%</h3>
+                        </div>
+                        <div class="p-2 bg-green-100 text-green-600 rounded-lg">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500">Last Term Analysis</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Class Schedule -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6" data-aos="fade-up"
+                    data-aos-delay="500">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-bold text-school-blue">Today's Schedule</h3>
+                        <button class="text-sm text-school-gold font-semibold hover:underline">View Full</button>
+                    </div>
+                    <div class="space-y-4">
+                        <div
+                            class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg border-l-4 border-green-500 opacity-60">
+                            <div class="text-center w-16">
+                                <span class="block text-xs text-gray-500">09:00</span>
+                                <span class="block text-xs font-bold">10:00</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-700 decoration-slice">Class 9-A</h4>
+                                <p class="text-xs text-gray-500">Physics | Room 201</p>
+                            </div>
+                            <span
+                                class="ml-auto text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">Completed</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-4 p-3 bg-school-blue/5 rounded-lg border-l-4 border-school-blue">
+                            <div class="text-center w-16">
+                                <span class="block text-xs text-gray-500">10:30</span>
+                                <span class="block text-xs font-bold">11:30</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-school-blue">Class 10-B</h4>
+                                <p class="text-xs text-gray-500">Physics Lab | Lab 2</p>
+                            </div>
+                            <span
+                                class="ml-auto text-xs px-2 py-1 bg-blue-100 text-school-blue rounded-full">Ongoing</span>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg border-l-4 border-school-gold">
+                            <div class="text-center w-16">
+                                <span class="block text-xs text-gray-500">12:00</span>
+                                <span class="block text-xs font-bold">01:00</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-700">Class 11-A</h4>
+                                <p class="text-xs text-gray-500">Physics | Room 304</p>
+                            </div>
+                            <span
+                                class="ml-auto text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full">Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6" data-aos="fade-up"
+                    data-aos-delay="600">
+                    <h3 class="text-lg font-bold text-school-blue mb-6">Quick Actions</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button
+                            class="p-4 rounded-xl border border-gray-200 hover:border-school-gold hover:bg-school-gold/5 transition-all text-center group">
+                            <div
+                                class="w-12 h-12 mx-auto bg-blue-100 text-school-blue rounded-full flex items-center justify-center text-xl mb-2 group-hover:bg-school-gold group-hover:text-white transition-colors">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700">Add Homework</span>
+                        </button>
+                        <button
+                            class="p-4 rounded-xl border border-gray-200 hover:border-school-gold hover:bg-school-gold/5 transition-all text-center group">
+                            <div
+                                class="w-12 h-12 mx-auto bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl mb-2 group-hover:bg-school-gold group-hover:text-white transition-colors">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700">Mark Attendance</span>
+                        </button>
+                        <button
+                            class="p-4 rounded-xl border border-gray-200 hover:border-school-gold hover:bg-school-gold/5 transition-all text-center group">
+                            <div
+                                class="w-12 h-12 mx-auto bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl mb-2 group-hover:bg-school-gold group-hover:text-white transition-colors">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700">Announcement</span>
+                        </button>
+                        <button
+                            class="p-4 rounded-xl border border-gray-200 hover:border-school-gold hover:bg-school-gold/5 transition-all text-center group">
+                            <div
+                                class="w-12 h-12 mx-auto bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xl mb-2 group-hover:bg-school-gold group-hover:text-white transition-colors">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-700">Report Card</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
